@@ -1,5 +1,6 @@
 # Memoirs of a Wanderer — crawler rules
 User-agent: *
 Allow: /
+Disallow: /reviews/_TEMPLATE.html
 
 Sitemap: https://www.keroshangovender.com/sitemap.xml
