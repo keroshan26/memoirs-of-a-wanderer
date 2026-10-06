@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!-- =================================================================
+     ARTICLE / DISPATCH TEMPLATE  —  Memoirs of a Wanderer
+     For NEWS pieces, photo-essays, opinion — anything that is NOT a game review.
+     (Game reviews use /reviews/_TEMPLATE.html instead.)
+
+     HOW TO POST A NEW ARTICLE (no coding needed):
+     This template lives in the /templates/ folder on GitHub ONLY — it is never
+     published to the live website. To post an article:
+     1. Open this file on GitHub, click the copy icon to copy ALL of it.
+     2. Go to the  public/articles/  folder → "Add file" → "Create new file".
+     3. Name it like:  my-article-name.html   (lowercase, dashes, no spaces)
+     4. Paste, then edit ONLY the bits marked  ✏️ EDIT .
+     5. Commit. Cloudflare rebuilds the site in ~1 minute.
+     6. Add a line in public/sitemap.xml and a card in the homepage
+        "CLIPPED DISPATCHES" section (see the notes at the very bottom).
+     ================================================================= -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ✏️ EDIT: browser-tab + Google title -->
+<title>Your article headline — Memoirs of a Wanderer</title>
+<!-- ✏️ EDIT: one-sentence summary for Google + link previews -->
+<meta name="description" content="A one-line summary of the article.">
+<!-- ✏️ EDIT: change the filename at the end to match this file -->
+<link rel="canonical" href="https://www.keroshangovender.com/articles/my-article-name.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Memoirs of a Wanderer">
+<!-- ✏️ EDIT the next 3 lines for link previews (WhatsApp / X / Facebook) -->
+<meta property="og:title" content="Your article headline">
+<meta property="og:description" content="A one-line summary of the article.">
+<meta property="og:url" content="https://www.keroshangovender.com/articles/my-article-name.html">
+<meta property="og:image" content="https://www.keroshangovender.com/images/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.keroshangovender.com/images/og-card.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/read.css">
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <a class="logo" href="/">THE CUTTING <span>ROOM</span></a>
+    <a class="home" href="/#news">◂ All dispatches</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <!-- ✏️ EDIT: section label -->
+    <div class="kicker">Dispatch · Section name</div>
+    <!-- ✏️ EDIT: headline. Wrap one or two words in <em> </em> to tint them blue. -->
+    <h1 class="serif">Your <em>headline</em> goes here</h1>
+    <!-- ✏️ EDIT: category word -->
+    <div class="meta"><span>News</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- OPTIONAL cover image. To use it: upload a picture to /images, change the
+       filename below. To skip it, delete this whole <figure>. -->
+  <figure class="cover">
+    <img src="/images/og-card.jpg" alt="✏️ EDIT image description">
+    <figcaption>✏️ EDIT caption — or delete this figure.</figcaption>
+  </figure>
+
+  <article>
+    <!-- ✏️ EDIT: dateline — where and when -->
+    <p class="dateline">Durban · 1 January 2026</p>
+
+    <!-- ✏️ EDIT everything below: write your article as normal paragraphs.
+         Start a new line with <p> and end it with </p> for each paragraph.
+         For a section heading, use:  <h2 class="serif">Heading</h2>  -->
+    <p>Your opening paragraph. The first letter is automatically styled as a large drop-cap, so just write naturally.</p>
+
+    <p>Another paragraph. Keep writing — one &lt;p&gt;…&lt;/p&gt; per paragraph.</p>
+
+    <h2 class="serif">A section heading (optional)</h2>
+
+    <p>More of the article here.</p>
+  </article>
+
+</div>
+
+<footer class="f">
+  <a class="back" href="/#news">◂ Back to The Cutting Room</a>
+  <div class="sig">Memoirs of a Wanderer — a collective record of my experiences</div>
+</footer>
+
+<script src="/assets/protect.js"></script>
+
+<!-- =================================================================
+     AFTER YOU POST, DO THESE TWO SMALL THINGS:
+     1) public/sitemap.xml — add:
+        <url><loc>https://www.keroshangovender.com/articles/my-article-name.html</loc></url>
+     2) public/index.html — in the "CLIPPED DISPATCHES" section, copy one
+        <article class="col"> card and point its heading link at this page.
+     ================================================================= -->
+</body>
+</html>

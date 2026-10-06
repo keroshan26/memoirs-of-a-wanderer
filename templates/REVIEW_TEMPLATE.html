@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- =================================================================
+     GAME REVIEW TEMPLATE  —  Memoirs of a Wanderer
+     For game reviews only. (News/photo-essays use /articles/_TEMPLATE.html.)
+
+     HOW TO POST A NEW REVIEW (no coding needed):
+     This template lives in the /templates/ folder on GitHub ONLY — it is never
+     published to the live website. To post a review:
+     1. Open this file on GitHub, click the copy icon to copy ALL of it.
+     2. Go to the  public/reviews/  folder → "Add file" → "Create new file".
+     3. Name it like:  the-game-name.html   (lowercase, dashes, no spaces)
+     4. Paste, then edit ONLY the bits marked  ✏️ EDIT .
+     5. Commit. Cloudflare rebuilds the site in ~1 minute.
+     6. Add a line in public/sitemap.xml and a card in the homepage
+        "CRITIC RANTS" section (see the notes at the very bottom of this file).
+     ================================================================= -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ✏️ EDIT: browser-tab + Google title -->
+<title>Game Name — Review — Memoirs of a Wanderer</title>
+<!-- ✏️ EDIT: one-sentence summary for Google + link previews -->
+<meta name="description" content="A one-line summary of the review.">
+<!-- ✏️ EDIT: change the filename at the end to match this file -->
+<link rel="canonical" href="https://www.keroshangovender.com/reviews/the-game-name.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Memoirs of a Wanderer">
+<!-- ✏️ EDIT the next 3 lines for link previews (WhatsApp / X / Facebook) -->
+<meta property="og:title" content="Game Name — Review">
+<meta property="og:description" content="A one-line summary of the review.">
+<meta property="og:url" content="https://www.keroshangovender.com/reviews/the-game-name.html">
+<meta property="og:image" content="https://www.keroshangovender.com/images/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.keroshangovender.com/images/og-card.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Anton&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/read.css">
+</head>
+<body>
+
+<div class="bar">
+  <div class="wrap">
+    <a class="logo" href="/">THE CUTTING <span>ROOM</span></a>
+    <a class="home" href="/#reviews">◂ All reviews</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <!-- ✏️ EDIT: genre label -->
+    <div class="kicker">Review · Action-RPG</div>
+    <!-- ✏️ EDIT: title. Wrap one or two words in <em> </em> to tint them blue. -->
+    <h1 class="serif">The Game <em>Name</em></h1>
+    <div class="meta">
+      <!-- ✏️ EDIT: platform(s), studio/year, and the star rating -->
+      <span>Studio · PC / PS5 / Xbox · 2026</span>
+      <span class="stars">★★★★☆</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- OPTIONAL cover image. Upload one to /images and change the filename,
+       or delete this whole <figure>. -->
+  <figure class="cover">
+    <img src="/images/og-card.jpg" alt="✏️ EDIT image description">
+    <figcaption>✏️ EDIT caption — or delete this figure.</figcaption>
+  </figure>
+
+  <article>
+    <!-- ✏️ EDIT everything below. One <p>…</p> per paragraph.
+         For a section heading use:  <h2 class="serif">Heading</h2>
+         For a pull-quote use:  <blockquote>Your line.</blockquote>  -->
+    <p>Your opening. The first letter becomes a large drop-cap automatically.</p>
+
+    <h2 class="serif">What works</h2>
+    <p>What the game gets right.</p>
+
+    <blockquote>A pull-quote — the line you'd put on the poster.</blockquote>
+
+    <h2 class="serif">What doesn't</h2>
+    <p>The honest bit.</p>
+
+    <h2 class="serif">Is it worth it?</h2>
+    <p>Your closing argument.</p>
+
+    <!-- ✏️ EDIT the verdict box -->
+    <div class="verdict">
+      <div class="t">The verdict</div>
+      <div class="score">★★★★☆ · 4 / 5</div>
+      <p>"Your one-line verdict."</p>
+    </div>
+  </article>
+
+</div>
+
+<footer class="f">
+  <a class="back" href="/#reviews">◂ Back to The Cutting Room</a>
+  <div class="sig">Memoirs of a Wanderer — a collective record of my experiences</div>
+</footer>
+
+<script src="/assets/protect.js"></script>
+
+<!-- =================================================================
+     AFTER YOU POST, DO THESE TWO SMALL THINGS:
+     1) public/sitemap.xml — add:
+        <url><loc>https://www.keroshangovender.com/reviews/the-game-name.html</loc></url>
+     2) public/index.html — in the "CRITIC RANTS" section, copy one
+        <article class="rc ..."> card and point its link at this page.
+     ================================================================= -->
+</body>
+</html>
