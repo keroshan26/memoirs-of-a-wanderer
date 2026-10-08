@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Photo prep — Memoirs of a Wanderer</title>
+<style>
+  :root { --paper:#d9d4c7; --ink:#141414; --red:#e2312a; --blue:#2b4bd6; --line:#141414; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Courier New", Courier, monospace; line-height:1.55; }
+  main { max-width:860px; margin:0 auto; padding:32px 16px 64px; }
+  .kicker { display:inline-block; background:var(--ink); color:var(--paper); padding:4px 10px; font-size:12px; letter-spacing:.2em; text-transform:uppercase; }
+  h1 { font-family:Impact, "Arial Narrow Bold", sans-serif; font-size:clamp(40px,9vw,72px); line-height:.95; margin:14px 0 8px; }
+  h1 span { background:var(--red); color:var(--paper); padding:0 .1em; }
+  h2 { font-size:15px; letter-spacing:.15em; text-transform:uppercase; margin:32px 0 10px; border-bottom:2px solid var(--line); padding-bottom:6px; }
+  p.lede { max-width:620px; }
+  .drop { border:2px dashed var(--ink); padding:36px 16px; text-align:center; cursor:pointer; background:rgba(255,255,255,.25); }
+  .drop.over { background:rgba(226,49,42,.12); border-color:var(--red); }
+  .drop strong { display:block; font-size:18px; margin-bottom:6px; }
+  input[type=file] { display:none; }
+  label.f { display:block; font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin:14px 0 4px; }
+  input[type=text], textarea, select { width:100%; font:inherit; font-size:15px; padding:9px 10px; border:2px solid var(--ink); background:#f3efe6; color:var(--ink); }
+  textarea { min-height:110px; resize:vertical; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:600px){ .row { grid-template-columns:1fr; } }
+  .preview { margin-top:16px; background:#111; padding:8px; }
+  .preview img { display:block; width:100%; height:auto; }
+  .stats { font-size:13px; margin-top:8px; }
+  .stats b { background:var(--ink); color:var(--paper); padding:1px 6px; }
+  .warn { color:var(--red); font-weight:bold; }
+  button, a.btn { display:inline-block; font:inherit; font-size:13px; letter-spacing:.15em; text-transform:uppercase; background:var(--red); color:#fff; border:0; padding:12px 18px; cursor:pointer; text-decoration:none; margin:12px 10px 0 0; }
+  button.ghost { background:var(--ink); }
+  button:disabled { opacity:.4; cursor:not-allowed; }
+  pre { background:#141414; color:#e9e4d8; padding:14px; overflow:auto; font-size:12.5px; white-space:pre-wrap; word-break:break-word; }
+  .hidden { display:none; }
+  .note { font-size:13px; opacity:.8; }
+  ol li { margin-bottom:6px; }
+</style>
+</head>
+<body>
+<main>
+  <span class="kicker">The Cutting Room · backstage</span>
+  <h1>Photo <span>prep</span></h1>
+  <p class="lede">Gets a photo ready for the Nocturne gallery: shrinks it to 1600px, adds the
+    <em>© keroshangovender.com</em> watermark, compresses it, strips hidden location data, and
+    writes the gallery code for you. Your photo never leaves this device — nothing is uploaded.</p>
+
+  <h2>1 · Choose a photo</h2>
+  <div class="drop" id="drop" tabindex="0" role="button">
+    <strong>Tap to choose a photo, or drag one here</strong>
+    <span class="note">JPG or PNG. Landscape (wide) shots look best in the gallery.</span>
+  </div>
+  <input type="file" id="file" accept="image/jpeg,image/png,image/webp,image/*">
+
+  <div id="work" class="hidden">
+    <div class="preview"><img id="out" alt="Prepared photo preview"></div>
+    <div class="stats" id="stats"></div>
+
+    <h2>2 · Name it &amp; write the caption</h2>
+    <div class="row">
+      <div>
+        <label class="f" for="slug">File name (lowercase, dashes)</label>
+        <input type="text" id="slug" placeholder="e.g. harbour-at-dusk">
+      </div>
+      <div>
+        <label class="f" for="plate">Plate number &amp; label</label>
+        <input type="text" id="plate" placeholder="e.g. Plate V — Harbour">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label class="f" for="t1">Title — plain part</label>
+        <input type="text" id="t1" placeholder="e.g. The harbour went">
+      </div>
+      <div>
+        <label class="f" for="t2">Title — blue italic part</label>
+        <input type="text" id="t2" placeholder="e.g. quiet">
+      </div>
+    </div>
+    <label class="f" for="cap">Caption (a few sentences)</label>
+    <textarea id="cap" placeholder="What you saw, where, and why you stopped."></textarea>
+    <div class="row">
+      <div>
+        <label class="f" for="side">Caption side (alternate with the photo above)</label>
+        <select id="side">
+          <option value="left">Left</option>
+          <option value="right">Right</option>
+        </select>
+      </div>
+      <div>
+        <label class="f" for="look">Look</label>
+        <select id="look">
+          <option value="colour">Colour (as shot)</option>
+          <option value="mono">Black &amp; white (like Plate II)</option>
+        </select>
+      </div>
+    </div>
+
+    <h2>3 · Save the photo</h2>
+    <button id="dl">⬇ Download photo</button>
+    <p class="note">It saves as <b id="fname">photo.jpg</b>. Upload that file into
+      <b>public/images/</b> on GitHub.</p>
+
+    <h2>4 · Copy the gallery code</h2>
+    <pre id="code"></pre>
+    <button class="ghost" id="copy">Copy code</button>
+    <p class="note">Paste it into <b>public/index.html</b>, just above the line
+      <b>&lt;!-- END OF GALLERY PHOTOS --&gt;</b> (or after the last <b>&lt;/section&gt;</b> in the Nocturne gallery).</p>
+  </div>
+</main>
+
+<script>
+(function(){
+  var MAX_EDGE = 1600, TARGET_KB = 320, MIN_Q = 0.6;
+  var drop = document.getElementById('drop'), file = document.getElementById('file');
+  var out = document.getElementById('out'), stats = document.getElementById('stats');
+  var fields = ['slug','plate','t1','t2','cap','side','look'].reduce(function(o,id){ o[id]=document.getElementById(id); return o; },{});
+  var blob = null, srcName = '';
+
+  function slugify(s){
+    return (s||'').toLowerCase().replace(/\.[a-z0-9]+$/,'').replace(/['’]/g,'')
+      .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'photo';
+  }
+  function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  drop.addEventListener('click', function(){ file.click(); });
+  drop.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); file.click(); } });
+  ['dragenter','dragover'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(t){ drop.addEventListener(t,function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function(e){ if(e.dataTransfer.files[0]) handle(e.dataTransfer.files[0]); });
+  file.addEventListener('change', function(){ if(file.files[0]) handle(file.files[0]); });
+
+  function loadBitmap(f){
+    if (window.createImageBitmap) {
+      return createImageBitmap(f, { imageOrientation:'from-image' }).catch(function(){ return viaImg(f); });
+    }
+    return viaImg(f);
+  }
+  function viaImg(f){
+    return new Promise(function(res, rej){
+      var url = URL.createObjectURL(f), im = new Image();
+      im.onload = function(){ res(im); };
+      im.onerror = function(){ rej(new Error('decode')); };
+      im.src = url;
+    });
+  }
+  function toBlob(c, q){ return new Promise(function(r){ c.toBlob(r, 'image/jpeg', q); }); }
+
+  async function handle(f){
+    srcName = f.name || 'photo';
+    stats.innerHTML = 'Working…';
+    document.getElementById('work').classList.remove('hidden');
+    var bm;
+    try { bm = await loadBitmap(f); }
+    catch(e){
+      stats.innerHTML = '<span class="warn">This browser can\'t open that file.</span> If it\'s an iPhone HEIC photo, ' +
+        'open this page in Safari on the iPhone itself, or change the iPhone camera setting to "Most Compatible" (Settings → Camera → Formats).';
+      return;
+    }
+    var w = bm.width, h = bm.height, s = Math.min(1, MAX_EDGE / Math.max(w, h));
+    var W = Math.round(w * s), H = Math.round(h * s);
+    var c = document.createElement('canvas'); c.width = W; c.height = H;
+    var x = c.getContext('2d');
+    x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high';
+    x.drawImage(bm, 0, 0, W, H);
+
+    // Watermark — matches the existing gallery photos (measured on a 1600px-wide image).
+    var k = W / 1600;
+    var size = Math.max(12, Math.round(22 * k));
+    x.font = '400 ' + size + 'px "Helvetica Neue", Arial, sans-serif';
+    x.textAlign = 'right'; x.textBaseline = 'alphabetic';
+    x.shadowColor = 'rgba(0,0,0,.35)'; x.shadowBlur = Math.round(3 * k);
+    x.fillStyle = 'rgba(255,255,255,.42)';
+    x.fillText('© keroshangovender.com', W - Math.round(24 * k), H - Math.round(20 * k));
+    x.shadowBlur = 0;
+
+    var q = 0.85, b = await toBlob(c, q);
+    while (b && b.size > TARGET_KB * 1024 && q > MIN_Q) { q = Math.round((q - 0.05) * 100) / 100; b = await toBlob(c, q); }
+    blob = b;
+    if (out.src) URL.revokeObjectURL(out.src);
+    out.src = URL.createObjectURL(b);
+
+    var origKB = Math.round(f.size / 1024), newKB = Math.round(b.size / 1024);
+    var msg = 'Before <b>' + (origKB > 1024 ? (origKB/1024).toFixed(1) + ' MB' : origKB + ' KB') + '</b> ' + w + '×' + h +
+              ' → After <b>' + newKB + ' KB</b> ' + W + '×' + H + ' · quality ' + Math.round(q*100) + '%';
+    if (h > w) msg += '<br><span class="warn">Heads up: this is a tall (portrait) photo. The gallery is full-width, so the top and bottom will be cropped on screen. Wide shots work best.</span>';
+    stats.innerHTML = msg;
+
+    if (!fields.slug.value) fields.slug.value = slugify(srcName);
+    render();
+  }
+
+  function render(){
+    var slug = slugify(fields.slug.value);
+    var right = fields.side.value === 'right', mono = fields.look.value === 'mono';
+    document.getElementById('fname').textContent = slug + '.jpg';
+    var img = 'images/' + slug + '.jpg';
+    var code =
+'  <section class="n-frame' + (right ? ' right' : '') + '" id="f-' + slug + '">\n' +
+'    <div class="bg" style="background-image:url(\'' + img + '\')' + (mono ? ';filter:grayscale(1) contrast(1.1)' : '') + '"></div>\n' +
+'    <div class="n-cap' + (right ? ' right' : '') + '">\n' +
+'      <div class="plate">' + esc(fields.plate.value || 'Plate ? — Name') + '</div>\n' +
+'      <h2 class="serif">' + esc(fields.t1.value || 'Your title') + ' <em>' + esc(fields.t2.value || 'here') + '</em></h2>\n' +
+'      <p>' + esc(fields.cap.value || 'Your caption goes here.') + '</p>\n' +
+'      <button class="viewfull" onclick="openLightbox(\'' + img + '\')">⤢ View full image</button>\n' +
+'    </div>\n' +
+'  </section>\n';
+    document.getElementById('code').textContent = code;
+  }
+  Object.keys(fields).forEach(function(id){ fields[id].addEventListener('input', render); fields[id].addEventListener('change', render); });
+
+  document.getElementById('dl').addEventListener('click', function(){
+    if (!blob) return;
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = slugify(fields.slug.value) + '.jpg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+  });
+  document.getElementById('copy').addEventListener('click', function(){
+    var t = document.getElementById('code').textContent, btn = this;
+    function done(){ btn.textContent = 'Copied ✓'; setTimeout(function(){ btn.textContent = 'Copy code'; }, 1800); }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, fallback); else fallback();
+    function fallback(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('code'));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r); try { document.execCommand('copy'); done(); } catch(e){} }
+  });
+})();
+</script>
+</body>
+</html>
