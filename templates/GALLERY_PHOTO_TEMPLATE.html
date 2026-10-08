@@ -1,0 +1,52 @@
+<!--
+  ═══════════════════════════════════════════════════════════════
+   GALLERY PHOTO TEMPLATE — one photo in the Nocturne gallery
+  ═══════════════════════════════════════════════════════════════
+   This file is NOT published. It's a starting point only.
+
+   EASIEST WAY: use the photo-prep page instead —
+     keroshangovender.com/tools/photo-prep.html
+   It resizes + watermarks the photo AND writes this block for you,
+   already filled in. Use this template only if you want to do it by hand.
+
+   HOW TO USE (by hand):
+   1. Upload the prepared photo into  public/images/  (e.g. harbour-at-dusk.jpg)
+   2. Copy the <section> … </section> block below.
+   3. In public/index.html, paste it just ABOVE the line:
+          <!-- END OF GALLERY PHOTOS -->
+   4. Change only the parts marked ✏️ EDIT. Commit.
+
+   LEFT / RIGHT: photos alternate. If the photo above yours has
+   class="n-frame right", make yours plain class="n-frame" (and
+   class="n-cap"), and vice versa. The right-hand version is at the bottom.
+-->
+
+
+<!-- ───── VERSION A: caption on the LEFT ───── -->
+  <section class="n-frame" id="f-harbour-at-dusk">                      <!-- ✏️ EDIT: f- + your file name (no .jpg) -->
+    <div class="bg" style="background-image:url('images/harbour-at-dusk.jpg')"></div>   <!-- ✏️ EDIT: your photo -->
+    <div class="n-cap">
+      <div class="plate">Plate V — Harbour</div>                         <!-- ✏️ EDIT: next plate number + one-word label -->
+      <h2 class="serif">The harbour went <em>quiet</em></h2>             <!-- ✏️ EDIT: title; words in <em> turn blue + italic -->
+      <p>Write two to four sentences here: what you saw, where you were, and why you stopped.</p>   <!-- ✏️ EDIT: caption -->
+      <button class="viewfull" onclick="openLightbox('images/harbour-at-dusk.jpg')">⤢ View full image</button>   <!-- ✏️ EDIT: same photo again -->
+    </div>
+  </section>
+
+
+<!-- ───── VERSION B: caption on the RIGHT (note the two "right"s) ───── -->
+  <section class="n-frame right" id="f-harbour-at-dusk">
+    <div class="bg" style="background-image:url('images/harbour-at-dusk.jpg')"></div>
+    <div class="n-cap right">
+      <div class="plate">Plate V — Harbour</div>
+      <h2 class="serif">The harbour went <em>quiet</em></h2>
+      <p>Write two to four sentences here: what you saw, where you were, and why you stopped.</p>
+      <button class="viewfull" onclick="openLightbox('images/harbour-at-dusk.jpg')">⤢ View full image</button>
+    </div>
+  </section>
+
+
+<!--
+   BLACK & WHITE (optional): to show a photo in mono like Plate II, change the bg line to:
+     <div class="bg" style="background-image:url('images/harbour-at-dusk.jpg');filter:grayscale(1) contrast(1.1)"></div>
+-->
